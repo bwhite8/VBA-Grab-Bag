@@ -1,0 +1,80 @@
+' Title:        QueryOutputToListBox
+' Purpose:      Executes a query and outputs to contents of a single-column listbox
+' Disclaimer:   Not plug-n-play.  Must replace "***" with your database information
+' Author:       Brian White
+' Date:         September, 2014
+
+Sub QueryOutputToListBox()
+
+Dim adoRecSet As New ADODB.Recordset
+Dim connDB As New ADODB.Connection
+Dim strConn, strDBName, strDB, strSQL As String
+Dim i, recordArray() As Variant
+Dim resultCount As Integer
+
+Set connDB = New ADODB.Connection
+' Set your database's provider here. Replace asterisks with your info.
+connDB.Provider = "***"
+
+' Set your Connection String Here.  Replace asterisks with your info.
+strConn = "Server=srv:***;data source=***;UID=***;PWD=***;Connect Timeout=10"
+
+On Error Resume Next
+connDB.Open strConn
+
+' If the connection fails, a message box appears to notify the user.
+If connDB.state <> adStateOpen Then
+
+    MsgBox ("Couldn't connect to the database.  Check your connection settings.")
+    Exit Sub
+    
+End If
+
+Set adoRecSet = New ADODB.Recordset
+
+' Set your SQL Query Here. Replace asterisks with your info.
+strSQL = "***"
+
+On Error GoTo ErrorHandler1:
+adoRecSet.Open Source:=strSQL, ActiveConnection:=connDB, CursorType:=adOpenStatic, LockType:=adLockOptimistic
+
+resultCount = adoRecSet.RecordCount
+
+' If your query returns 0 results, we branch to an errorhandler
+If Not resultCount > 0 Then
+    GoTo ErrorHandler2
+End If
+
+recordArray = adoRecSet.GetRows()
+
+' Outputs query results to listbox.  Assumes your UserForm is named "UserForm" and ListBox name is "listboxname"
+For Each i In recordArray()
+
+    UserForm.listboxname.AddItem (i)
+
+Next i
+
+' Release objects from memory and close them
+Set adoRecSet = Nothing
+Set connDB = Nothing
+adoRecSet.Close
+connDB.Close
+
+Exit Sub
+
+ErrorHandler1:
+
+    MsgBox ("Query Failed")
+    Set connDB = Nothing
+    connDB.Close
+    Exit Sub
+
+ErrorHandler2:
+
+    MsgBox ("0 Results")
+    Set connDB = Nothing
+    Set adoRecSet = Nothing
+    connDB.Close
+    adoRecSet.Close
+    
+End Sub
