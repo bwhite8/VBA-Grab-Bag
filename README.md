@@ -6,3 +6,5 @@ Diverse VBA functions best incorporated in larger projects
                               file to another (and operating on that data in between).
   
   - Query Output To ListBox:  Executes a query and outputs to content of a single-column listbox
+
+  - Query Output To Multi-Column ListBox:  Executes a query and outputs to content of a multi-column listbox
