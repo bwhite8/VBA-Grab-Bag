@@ -1,0 +1,80 @@
+'
+' Title:      ToAndFromArray
+' Purpose:    Illustrate use of Multidimensional Arrays with VBA
+' Actions:    Reads columns A-F into a multimensional array then writes from that array to columns G-L
+' Disclaimer: This script is best used to read data into a multidimensional array, operate on that data, then 
+'             write data from the array into a separate file.  If desired, line 27 would be a good spot to open
+'             a new file for output.
+' Author:     Brian White
+' Date:       October, 2014
+'
+
+Sub ToAndFromArray()
+Dim i, j, transVar() As Variant
+Dim rowA, ValidRow, r, lRow As Integer
+
+' Part I: Read Columns A-F Into A Multidimensional Array
+rowA = 2
+rowB = 2
+i = 0
+j = 1
+
+' Begin by getting the file's used row count
+lRow = Range("A1").End(xlDown).row
+
+' Build a true integer, ValidRow, to be used to redimension our array
+For r = 2 To lRow
+    ValidRow = ValidRow + 1
+Next r
+
+' Set our multidimensional array
+ReDim Preserve transVar(0 To ValidRow, 1 To 6)
+
+' Read content of file (Columns A-F) into our array
+Do While Cells(rowA, 1).Value <> ""
+    
+    transVar(i, 1) = Range("A" & rowA).Value
+    transVar(i, 2) = Range("B" & rowA).Value
+    transVar(i, 3) = Range("C" & rowA).Value
+    transVar(i, 4) = Range("D" & rowA).Value
+    transVar(i, 5) = Range("E" & rowA).Value
+    transVar(i, 6) = Range("F" & rowA).Value
+
+rowA = rowA + 1
+i = i + 1
+Loop
+
+' Part II: Write Columns G-L From A Multidimensional Array
+
+For i = 0 To ValidRow
+
+    For j = 1 To 6
+    
+        If j = 1 Then
+            Range("G" & rowB).Value = transVar(i, j)
+            
+        ElseIf j = 2 Then
+            Range("H" & rowB).Value = transVar(i, j)
+        
+        ElseIf j = 3 Then
+            Range("I" & rowB).Value = transVar(i, j)
+        
+        ElseIf j = 4 Then
+            Range("J" & rowB).Value = transVar(i, j)
+        
+        ElseIf j = 5 Then
+            Range("K" & rowB).Value = transVar(i, j)
+            
+        ElseIf j = 6 Then
+            Range("L" & rowB).Value = transVar(i, j)
+        
+        End If
+    
+    
+    Next j
+
+    rowB = rowB + 1
+Next i
+
+
+End Sub
