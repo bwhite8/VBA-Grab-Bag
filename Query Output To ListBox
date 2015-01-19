@@ -54,27 +54,26 @@ For Each i In recordArray()
 
 Next i
 
-' Release objects from memory and close them
-Set adoRecSet = Nothing
-Set connDB = Nothing
+' Close objects and release from memory
 adoRecSet.Close
 connDB.Close
+Set adoRecSet = Nothing
+Set connDB = Nothing
 
 Exit Sub
 
 ErrorHandler1:
 
     MsgBox ("Query Failed")
-    Set connDB = Nothing
     connDB.Close
+    Set connDB = Nothing
     Exit Sub
 
 ErrorHandler2:
 
     MsgBox ("0 Results")
-    Set connDB = Nothing
-    Set adoRecSet = Nothing
     connDB.Close
     adoRecSet.Close
-    
+    Set connDB = Nothing
+    Set adoRecSet = Nothing
 End Sub
