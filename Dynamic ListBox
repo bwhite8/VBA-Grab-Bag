@@ -1,5 +1,6 @@
-' Title:        QueryOutputToListBox
+' Title:        Dynamic ListBox
 ' Purpose:      Executes a query and outputs to contents of a single-column listbox
+' Dependency:   ADODB
 ' Disclaimer:   Not plug-n-play.  Must replace "***" with your database information
 ' Author:       Brian White
 ' Date:         September, 2014
