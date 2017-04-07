@@ -2,9 +2,8 @@
 Diverse VBA functions best incorporated in larger projects
 
 ## Contents
-  - Multidimensional Array:    Illustrates use of multidimensional arrays in VBA.  Best used when moving data from one
-                              file to another (and operating on that data in between).
+  - Multidimensional Array:    Illustrates use of multidimensional arrays in VBA.  Best used for file I/O.
   
-  - Query Output To ListBox:  Executes a query and outputs to content of a single-column listbox
+  - Dynamic ListBox:  Executes a query and outputs to content of a single-column listbox
 
-  - Query Output To Multi-Column ListBox:  Executes a query and outputs to content of a multi-column listbox
+  - Dynamic Multi-Column ListBox:  Executes a query and outputs to content of a multi-column listbox
