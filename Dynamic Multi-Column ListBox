@@ -1,11 +1,11 @@
-' Title:        Dynamic Multi-Column ListBox
+' Title:        DynamicMultiColumnListBox
 ' Purpose:      Executes a query and outputs response in a multi-column listbox
 ' Dependency:   ADODB
 ' Disclaimer:   Not plug-n-play. Must replace "***" with your database information.  Assumes DB fields are NOT NULL.
 ' Author:       Brian White
 ' Date:         September, 2014
 
-Sub QueryOutputToListBox2()
+Sub DynamicMultiColumnListBox()
     Dim adoRecSet As New ADODB.Recordset
     Dim connDB As New ADODB.Connection
     Dim strConn, strSQL As String
